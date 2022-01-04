@@ -21,7 +21,6 @@ int main() {
     }
 
     struct node* head = sort(n, nodes);
-    // printf("Alex e grasan  ");
     while (head != NULL) {
         printf("%d ", head->val);
         head = head->next;
