@@ -1,35 +1,15 @@
-;%include "../../io.mac"
 section .text
 	global sort
-	;extern printf
-
-; struct node {
-;     	int val;
-;    	struct node* next;
-; };
-
-
-;; struct node* sort(int n, struct node* node);
-; 	The function will link the nodes in the array
-;	in ascending order and will return the address
-;	of the new found head of the list
-; @params:
-;	n -> the number of nodes in the array
-;	node -> a pointer to the beginning in the array
-; @returns:
-;	the address of the head of the sorted list
+	
 sort:
 	enter 0, 0
-	mov eax, [ebp + 12] ; dimensiune
-	mov ebx, [ebp + 12] ;
-	; lea ecx, [ebx + 8]
-	; lea edx, [ebx + 4]
-	; mov [edx], ecx
 
-	xor edi, edi ; Iteratorul
+	; Se face initializarea pentru contorul de lungime al vectorului (edi)
+	; si pentru registrul ce parcurge elementele de tip struct ale vectorului (esi)
+	xor edi, edi
 	xor esi, esi 
 
-	loop : 
+	selection_sort : 
 		cmp edi, [ebp + 8]
 		jge find_head
 		xor ecx, ecx
@@ -51,10 +31,8 @@ sort:
 			mov [eax], edx
 			continue_after_instructions:
 				lea eax, [edx]
-				;PRINTF32`Nr : %d\n\x0`, ebx
-				;PRINTF32`U : %d\n\x0`, [eax + 0]
 				add edi, dword 1
-				jmp loop
+				jmp selection_sort
 	
 	
 test1:
@@ -75,8 +53,7 @@ find_head:
 	mov ebx, [ebp + 12]
 	mov edx, dword 10000
 	xor ecx, ecx 
-	loop2:
-		;PRINTF32`A : %d\n\x0`, edx  
+	loop2:  
 		cmp ecx, [ebp + 8]
 		jge finish 
 		cmp [ebx + 0], edx 
@@ -93,7 +70,5 @@ find_head:
 	
 finish:
 	mov ebx, [ebp + 12]
-	;PRINTF32`Daa : %p\n\x0`, [ebx + 4]
-	;PRINTF32`Daa : %p\n\x0`, [ebx + 12]
 	leave
 	ret
