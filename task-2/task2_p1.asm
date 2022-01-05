@@ -1,7 +1,7 @@
-%include "../../io.mac"
+;%include "../../io.mac"
 section .text
 	global cmmmc
-	extern printf
+	;extern printf
 
 ;; int cmmmc(int a, int b)
 ;
