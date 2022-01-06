@@ -33,8 +33,8 @@ int main() {
     }
     fgets(s, MAX_INPUT_STRING_LEN, stdin);
     get_words(s, words, number_of_words);
-    qsort(words, number_of_words, sizeof(char *), compare);
-    // sort(words, number_of_words, sizeof(char *));
+    // qsort(words, number_of_words, sizeof(char *), compare);
+    sort(words, number_of_words, sizeof(char *));
     for (int i = 0; i < number_of_words; i++) {
         printf("%s\n", words[i]);
     }
