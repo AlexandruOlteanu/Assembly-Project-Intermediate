@@ -18,7 +18,7 @@ char get()
     return *p++;
 }
 
-int number()
+int number2()
 {
     int result = get() - '0';
     while (peek() >= '0' && peek() <= '9')
@@ -33,7 +33,7 @@ int expression2();
 int factor2() {
 
     if (peek() >= '0' && peek() <= '9')
-        return number();
+        return number2();
     else if (peek() == '(')
     {
         get(); // '('
@@ -80,6 +80,6 @@ int main()
     int i = 0;  
     scanf("%s", s);
     p = s;
-    printf("%d\n", expression2());
+    printf("%d\n", expression(p, &i));
     return 0;
 }
