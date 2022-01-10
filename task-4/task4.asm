@@ -1,13 +1,7 @@
-%include "../../io.mac"
-section .text
-        extern printf
-
 global expression
 global term
 global factor
 global number 
-
-
 
 number:
         push ebp
@@ -21,16 +15,13 @@ number:
 
         traverse_digits:
                 mov edi, [ecx]
-                ;PRINTF32`Yes : %c\n\x0`, [edx + edi] 
                 cmp [edx + edi], byte 48
                 jge test
                 jmp finish_number
                 continue:
                         xor ebx, ebx 
                         mov bl, [edx + edi]
-                        ;PRINTF32`Yes : %c\n\x0`, ebx
                         sub bl, byte 48
-                        ;PRINTF32`Da : %d\n\x0`, ebx
                         imul esi, dword 10
                         add esi, ebx 
                         add [ecx], dword 1
@@ -41,14 +32,12 @@ number:
                 jmp finish_number
 
 finish_number:
-        ;PRINTF32`%d\n\x0`, esi
         leave 
         ret ; esi va fi returnat
 
 factor:
         push    ebp
         mov     ebp, esp
-
 
         mov edx, [ebp + 8]
         mov ecx, [ebp + 12]
